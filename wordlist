@@ -1,0 +1,17 @@
+www.%s
+dev.%s
+local
+localhost
+status.%s
+status
+staging.%s
+staging
+development
+development.%s
+uat
+uat.%s
+%s
+beta
+beta.%s
+secure
+secure.%s
