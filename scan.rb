@@ -15,6 +15,7 @@ host = get_option('host')
 port = get_option('port') || 80
 ignore_http_codes = get_option('ignore-http-code') || '404'
 ignore_content_length = get_option('ignore-content-length') || 0
+wordlist_file = get_option('wordlist') || 'wordlist'
 
 if ip_address.nil? || host.nil?
   puts 'Usage: ruby scan.rb --ip=<ip-address> --host=<host>'
@@ -25,6 +26,7 @@ if ip_address.nil? || host.nil?
   puts '    --port=<port>'
   puts '    --ignore-http-codes=<comma separated list of http codes>'
   puts '    --ignore-content-length=<value>'
+  puts '    --wordlist=<file location>'
   exit
 end
 
@@ -32,7 +34,7 @@ port = port.to_i
 ignore_http_codes = ignore_http_codes.split(',').map { |code| code.to_i }
 ignore_content_length = ignore_content_length.to_i
 
-IO.read('wordlist').split("\n").each do |virtual_host|
+IO.read(wordlist_file).split("\n").each do |virtual_host|
   hostname = virtual_host.gsub('%s', host)
   
   http = Net::HTTP.new(ip_address, port)
