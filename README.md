@@ -13,3 +13,7 @@ Here's a list of all available options:
  - **--ignore-http-codes**: a comma-separated list of HTTP status codes to be ignored in the scan results. This may become useful when the scan results are poluted with false-positives that are identified by their HTTP response code.
  - **--ignore-content-length**: a content length filter which should be ignored in the scan results. This may become useful when a server returns a static page on every virtual host guess.
  - **--port**: when the web server isn't running on port 80.
+ - **--wordlist**: specify an alternative location for the wordlist.
+
+## Wordlist
+There's a default, small, wordlist in this repository. To use your own wordlist, use the **--wordlist** option. **%s** will be replaced with the given **--host** header in every line of the wordlist file.
