@@ -13,7 +13,7 @@ end
 
 ip_address = get_option('ip')
 host = get_option('host')
-ignore_http_codes = get_option('ignore-http-code') || '404'
+ignore_http_codes = get_option('ignore-http-codes') || '404'
 ignore_content_length = get_option('ignore-content-length') || 0
 wordlist_file = get_option('wordlist') || 'wordlist'
 ssl = get_option('ssl') || 'off'
