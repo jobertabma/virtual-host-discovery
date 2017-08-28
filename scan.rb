@@ -11,11 +11,11 @@ def get_option(key)
   selected.split('=').last
 end
 
-def write_results(output) 
+def write_results(result, file_path) 
   begin
     puts " Start writing final results"
-    file = File.open("output", "ab+")
-    file.write(output) 
+    file = File.open(file_path, "ab+")
+    file.write(result) 
     puts " Finish writing final results"
   rescue IOError => e
     #some error occur, dir not writable etc.
@@ -69,11 +69,13 @@ IO.read(wordlist_file).split("\n").each do |virtual_host|
 
     result << "Found: #{hostname} (#{response.code})\n"
     response.to_hash.each do |header, values|
-      result << "  #{header}:"
+      result << " #{header}:\n"
       values.each do |value|
-        result<< "\n    #{value}\n"
+        result << " #{value}\n"
       end
     end
   end
 end
-write_results(result.string)
+
+puts result.string
+write_results(result.string, output)
