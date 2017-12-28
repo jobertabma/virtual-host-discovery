@@ -11,11 +11,11 @@ def get_option(key)
   selected.split('=').last
 end
 
-def write_results(result, file_path) 
+def write_results(result, file_path)
   begin
     puts " Start writing final results"
     file = File.open(file_path, "ab+")
-    file.write(result) 
+    file.write(result)
     puts " Finish writing final results"
   rescue IOError => e
     #some error occur, dir not writable etc.
@@ -23,8 +23,7 @@ def write_results(result, file_path)
   ensure
     file.close unless file.nil?
   end
-end 
-
+end
 
 ip_address = get_option('ip')
 host = get_option('host')
@@ -56,7 +55,7 @@ ignore_content_length = ignore_content_length.to_i
 result = StringIO.new
 IO.read(wordlist_file).split("\n").each do |virtual_host|
   hostname = virtual_host.gsub('%s', host)
-  
+
   Net::HTTP.start(ip_address, port, use_ssl: ssl == 'on', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
     request = Net::HTTP::Head.new('/')
     request['Host'] = port == 80 ? hostname : format('%s:%d', hostname, port)
