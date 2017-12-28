@@ -53,7 +53,7 @@ port = port.to_i
 ignore_http_codes = ignore_http_codes.split(',').map { |code| code.to_i }
 ignore_content_length = ignore_content_length.to_i
 result = StringIO.new
-IO.read(wordlist_file).split("\n").each do |virtual_host|
+IO.read(File.expand_path(wordlist_file)).split("\n").each do |virtual_host|
   hostname = virtual_host.gsub('%s', host)
 
   Net::HTTP.start(ip_address, port, use_ssl: ssl == 'on', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
